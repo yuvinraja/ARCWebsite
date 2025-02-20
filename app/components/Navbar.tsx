@@ -76,7 +76,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="mx-auto flex  w-full max-w-7xl justify-between px-4 py-5 text-sm">
+    <div className="relative z-[100] mx-auto flex w-full max-w-7xl justify-between px-4 py-5 text-sm">
       {/* left side  */}
       <section ref={animationParent} className="flex items-center gap-10">
         {/* logo */}
@@ -98,7 +98,7 @@ export default function Navbar() {
 
               {/* dropdown */}
               {d.children && (
-                <div className="absolute   right-0   top-10 hidden w-auto  flex-col gap-1   rounded-lg bg-white py-3 shadow-md  transition-all group-hover:flex ">
+                <div className="absolute z-[200] right-0 top-10 hidden w-auto flex-col gap-1 rounded-lg bg-white py-3 shadow-lg transition-all group-hover:flex ">
                   {d.children.map((ch, i) => (
                     <Link
                       key={i}
