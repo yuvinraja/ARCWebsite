@@ -13,7 +13,6 @@ type NavItem = {
   label: string
   link?: string
   children?: NavItem[]
-  iconImage?: string
 }
 
 const navItems: NavItem[] = [
@@ -83,7 +82,7 @@ export default function Navbar() {
   )
 }
 
-function NavItem({ label, link, children, iconImage }: NavItem) {
+function NavItem({ label, link, children }: NavItem) {
   return (
     <div className="relative group px-2 py-3 transition-all">
       <Link href={link ?? "#"}>
@@ -101,9 +100,6 @@ function NavItem({ label, link, children, iconImage }: NavItem) {
                 href={child.link ?? "#"}
                 className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-neutral-400 hover:text-black"
               >
-                {child.iconImage && (
-                  <Image src={child.iconImage || "/placeholder.svg"} alt="item-icon" width={20} height={20} />
-                )}
                 <span className="whitespace-nowrap pl-3">{child.label}</span>
               </Link>
             </div>
@@ -138,7 +134,7 @@ function MobileNav({ closeSideMenu }: { closeSideMenu: () => void }) {
   )
 }
 
-function MobileNavItem({ label, link, children, iconImage }: NavItem) {
+function MobileNavItem({ label, link, children }: NavItem) {
   const [animationParent] = useAutoAnimate()
   const [isItemOpen, setItem] = useState(false)
 
@@ -162,9 +158,6 @@ function MobileNavItem({ label, link, children, iconImage }: NavItem) {
                 href={child.link ?? "#"}
                 className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-neutral-400 hover:text-black"
               >
-                {child.iconImage && (
-                  <Image src={child.iconImage || "/placeholder.svg"} alt="item-icon" width={20} height={20} />
-                )}
                 <span className="whitespace-nowrap pl-3">{child.label}</span>
               </Link>
             </div>
