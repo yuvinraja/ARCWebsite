@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation";
 import experiments from "../experimentsData";
 
-const ExperimentDetail = ({ params }: { params: { id: string } }) => {
-  const experiment = experiments.find((exp) => exp.id === params.id);
+interface ExperimentPageProps {
+  params: Promise<{ id: string }>;
+}
+
+const ExperimentDetail = async ({ params }: ExperimentPageProps) => {
+  const { id } = await params;
+  const experiment = experiments.find((exp) => exp.id === id);
 
   if (!experiment) return notFound();
 
