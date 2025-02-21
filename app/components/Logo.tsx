@@ -1,14 +1,15 @@
-import React from 'react'
+import React from "react";
+import Link from "next/link";
 
 const Logo = () => {
   return (
-    <>
-        <div className="text-center">
+    <Link href="/" className="text-center cursor-pointer">
+      <div>
         <h1 className="text-lg font-bold text-gray-800">VOLTAERO</h1>
         <p className="text-xs text-gray-600 mt-1">Innovate, Elevate, Accelerate</p>
-    </div>
-    </>
-  )
-}
+      </div>
+    </Link>
+  );
+};
 
-export default Logo
+export default Logo;

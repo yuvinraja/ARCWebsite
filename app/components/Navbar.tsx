@@ -29,15 +29,15 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     label: "Emerging Tech",
-    link: "#",
+    link: "/experiments",
     children: [
       {
         label: "Drones",
-        link: "#",
+        link: "/experiments",
       },
       {
         label: "Ground Vehicles",
-        link: "#",
+        link: "/experiments",
       },
     ]
   },
