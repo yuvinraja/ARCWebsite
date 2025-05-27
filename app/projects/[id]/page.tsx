@@ -4,14 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface ProjectPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
-const ProjectDetail = ({ params }: ProjectPageProps) => {
-  const { id } = params;
-
+const ProjectDetail = async ({ params }: ProjectPageProps) => {
+  const { id } = await params;
   const project = projects.find((exp) => exp.id === id);
 
   if (!project) {
