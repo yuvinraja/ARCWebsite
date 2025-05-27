@@ -27,28 +27,42 @@ const navItems: NavItem[] = [
         label: "Ground Vehicles",
         link: "/experiments",
       },
+      {
+        label: "Autonomous Systems",
+        link: "/experiments",
+      },
     ],
   },
   {
-    label: "Company",
+    label: "Projects",
     link: "#",
     children: [
       {
-        label: "Our Team",
+        label: "Drones",
+        link: "/projects",
+      },
+    ],
+  },
+  {
+    label: "About Us",
+    link: "#",
+    children: [
+      {
+        label: "Team",
         link: "#",
       },
       {
-        label: "Blog",
+        label: "Contact Us",
         link: "#",
       },
     ],
   },
   {
-    label: "Products",
+    label: "Careers",
     link: "#",
   },
   {
-    label: "About",
+    label: "Blog",
     link: "#",
   },
 ]
@@ -68,13 +82,14 @@ export default function Navbar() {
           ))}
         </div>
       </section>
-
-      <section className="hidden md:flex items-center gap-8">
+          
+      {/* Login and register in desktop view */}
+      {/* <section className="hidden md:flex items-center gap-8">
         <button className="h-fit text-neutral-400 transition-all hover:text-black/90">Login</button>
         <button className="h-fit rounded-xl border-2 border-neutral-400 px-4 py-2 text-neutral-400 transition-all hover:border-black hover:text-black/90">
           Register
         </button>
-      </section>
+      </section> */}
 
       <FiMenu onClick={() => setSideMenue(true)} className="cursor-pointer text-4xl md:hidden" />
     </div>
@@ -121,13 +136,14 @@ function MobileNav({ closeSideMenu }: { closeSideMenu: () => void }) {
             <MobileNavItem key={i} {...item} />
           ))}
         </div>
-
-        <section className="flex flex-col gap-8 mt-4 items-center">
+        
+        {/* Uncomment if you want to add login/register buttons in mobile view */}
+        {/* <section className="flex flex-col gap-8 mt-4 items-center">
           <button className="h-fit text-neutral-400 transition-all hover:text-black/90">Login</button>
           <button className="w-full max-w-[200px] rounded-xl border-2 border-neutral-400 px-4 py-2 text-neutral-400 transition-all hover:border-black hover:text-black/90">
             Register
           </button>
-        </section>
+        </section> */}
       </div>
     </div>
   )
