@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { IoIosArrowDown } from "react-icons/io"
-import { FiMenu } from "react-icons/fi"
-import { AiOutlineClose } from "react-icons/ai"
-import { useAutoAnimate } from "@formkit/auto-animate/react"
-import Logo from "./Logo"
+import { useState } from "react";
+import Link from "next/link";
+import { IoIosArrowDown } from "react-icons/io";
+import { FiMenu } from "react-icons/fi";
+import { AiOutlineClose } from "react-icons/ai";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import Logo from "./Logo";
 
 type NavItem = {
-  label: string
-  link?: string
-  children?: NavItem[]
-}
+  label: string;
+  link?: string;
+  children?: NavItem[];
+};
 
 const navItems: NavItem[] = [
   {
@@ -65,24 +65,26 @@ const navItems: NavItem[] = [
     label: "Blog",
     link: "#",
   },
-]
+];
 
 export default function Navbar() {
-  const [animationParent] = useAutoAnimate()
-  const [isSideMenuOpen, setSideMenue] = useState(false)
+  const [animationParent] = useAutoAnimate();
+  const [isSideMenuOpen, setSideMenue] = useState(false);
 
   return (
     <div className="relative z-[100] mx-auto flex w-full max-w-7xl justify-between px-4 py-5 text-sm">
       <section ref={animationParent} className="flex items-center gap-10">
         <Logo />
-        {isSideMenuOpen && <MobileNav closeSideMenu={() => setSideMenue(false)} />}
+        {isSideMenuOpen && (
+          <MobileNav closeSideMenu={() => setSideMenue(false)} />
+        )}
         <div className="hidden md:flex items-center gap-4 transition-all">
           {navItems.map((item, i) => (
             <NavItem key={i} {...item} />
           ))}
         </div>
       </section>
-          
+
       {/* Login and register in desktop view */}
       {/* <section className="hidden md:flex items-center gap-8">
         <button className="h-fit text-neutral-400 transition-all hover:text-black/90">Login</button>
@@ -91,9 +93,12 @@ export default function Navbar() {
         </button>
       </section> */}
 
-      <FiMenu onClick={() => setSideMenue(true)} className="cursor-pointer text-4xl md:hidden" />
+      <FiMenu
+        onClick={() => setSideMenue(true)}
+        className="cursor-pointer text-4xl md:hidden"
+      />
     </div>
-  )
+  );
 }
 
 function NavItem({ label, link, children }: NavItem) {
@@ -102,7 +107,9 @@ function NavItem({ label, link, children }: NavItem) {
       <Link href={link ?? "#"}>
         <p className="flex cursor-pointer items-center gap-2 text-neutral-400 group-hover:text-black">
           <span>{label}</span>
-          {children && <IoIosArrowDown className="rotate-180 transition-all group-hover:rotate-0" />}
+          {children && (
+            <IoIosArrowDown className="rotate-180 transition-all group-hover:rotate-0" />
+          )}
         </p>
       </Link>
 
@@ -121,22 +128,34 @@ function NavItem({ label, link, children }: NavItem) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 function MobileNav({ closeSideMenu }: { closeSideMenu: () => void }) {
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      closeSideMenu();
+    }
+  };
+
   return (
-    <div className="fixed left-0 top-0 flex h-full min-h-screen w-full justify-end bg-black/60 md:hidden">
+    <div
+      className="fixed left-0 top-0 flex h-full min-h-screen w-full justify-end bg-black/60 md:hidden"
+      onClick={handleOverlayClick}
+    >
       <div className="h-full w-[65%] bg-white px-4 py-4">
         <section className="flex justify-end">
-          <AiOutlineClose onClick={closeSideMenu} className="cursor-pointer text-4xl" />
+          <AiOutlineClose
+            onClick={closeSideMenu}
+            className="cursor-pointer text-4xl"
+          />
         </section>
         <div className="flex flex-col text-base gap-2 transition-all">
           {navItems.map((item, i) => (
-            <MobileNavItem key={i} {...item} />
+            <MobileNavItem key={i} {...item} closeSideMenu={closeSideMenu} />
           ))}
         </div>
-        
+
         {/* Uncomment if you want to add login/register buttons in mobile view */}
         {/* <section className="flex flex-col gap-8 mt-4 items-center">
           <button className="h-fit text-neutral-400 transition-all hover:text-black/90">Login</button>
@@ -146,12 +165,12 @@ function MobileNav({ closeSideMenu }: { closeSideMenu: () => void }) {
         </section> */}
       </div>
     </div>
-  )
+  );
 }
 
-function MobileNavItem({ label, link, children }: NavItem) {
-  const [animationParent] = useAutoAnimate()
-  const [isItemOpen, setItem] = useState(false)
+function MobileNavItem({ label, link, children, closeSideMenu }: NavItem & { closeSideMenu: () => void }) {
+  const [animationParent] = useAutoAnimate();
+  const [isItemOpen, setItem] = useState(false);
 
   return (
     <div ref={animationParent} className="relative px-2 py-3 transition-all">
@@ -159,10 +178,16 @@ function MobileNavItem({ label, link, children }: NavItem) {
         onClick={() => setItem(!isItemOpen)}
         className="flex cursor-pointer items-center gap-2 text-neutral-400 hover:text-black"
       >
-        <Link href={link ?? "#"}>
+        <Link href={link ?? "#"} onClick={children ? undefined : closeSideMenu}>
           <span>{label}</span>
         </Link>
-        {children && <IoIosArrowDown className={`text-xs transition-all ${isItemOpen ? "rotate-180" : ""}`} />}
+        {children && (
+          <IoIosArrowDown
+            className={`text-xs transition-all ${
+              isItemOpen ? "rotate-180" : ""
+            }`}
+          />
+        )}
       </div>
 
       {isItemOpen && children && (
@@ -172,6 +197,7 @@ function MobileNavItem({ label, link, children }: NavItem) {
               <Link
                 href={child.link ?? "#"}
                 className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-neutral-400 hover:text-black"
+                onClick={closeSideMenu}
               >
                 <span className="whitespace-nowrap pl-3">{child.label}</span>
               </Link>
@@ -180,6 +206,5 @@ function MobileNavItem({ label, link, children }: NavItem) {
         </div>
       )}
     </div>
-  )
+  );
 }
-
