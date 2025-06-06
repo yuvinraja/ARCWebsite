@@ -49,7 +49,7 @@ const navItems: NavItem[] = [
     children: [
       {
         label: "Team",
-        link: "#",
+        link: "/team",
       },
       {
         label: "Contact Us",
