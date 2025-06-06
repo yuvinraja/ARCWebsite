@@ -6,13 +6,15 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen ">
       {/* Background Image */}
       <Image
         src="/hero.jpg"
         alt="Hero Background"
         fill
-        className="w-full h-full object-cover"
+          
+
+
       />
 
       {/* Overlay Content */}
