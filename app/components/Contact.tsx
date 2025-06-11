@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -11,7 +11,7 @@ const Contact = () => {
     message: "",
   });
 
-  const [status, setStatus] = useState("");
+  // const [status, setStatus] = useState("");
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -19,23 +19,44 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    // Replace this with your backend or service endpoint
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  });
 
-    if (response.ok) {
-      setStatus("success");
-      setFormData({ name: "", email: "", reason: "Feedback", message: "" });
-    } else {
-      setStatus("error");
-    }
-  };
+  const result = await response.json();
+
+  if (response.ok) {
+    alert('Your message was sent successfully!');
+    setFormData({ name: '', email: '', reason: '', message: '' });
+  } else {
+    alert(result.error || 'Failed to send email.');
+  }
+};
+
+
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   // Replace this with your backend or service endpoint
+  //   const response = await fetch("/api/contact", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(formData),
+  //   });
+
+  //   if (response.ok) {
+  //     setStatus("success");
+  //     setFormData({ name: "", email: "", reason: "Feedback", message: "" });
+  //   } else {
+  //     setStatus("error");
+  //   }
+  // };
 
   return (
     <motion.div
