@@ -45,7 +45,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "About Us",
-    link: "#",
+    link: "/about",
     children: [
       {
         label: "Team",
@@ -56,6 +56,10 @@ const navItems: NavItem[] = [
         link: "/contact",
       },
     ],
+  },
+  {
+    label: "Products",
+    link: "#",
   },
   {
     label: "Careers",
