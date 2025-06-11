@@ -7,11 +7,11 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    reason: "Feedback",
+    reason: "",
     message: "",
   });
 
-  // const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<"success" | "error" | "">("");
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -19,44 +19,30 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const response = await fetch('/api/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData),
-  });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-  const result = await response.json();
+      const result = await response.json();
 
-  if (response.ok) {
-    alert('Your message was sent successfully!');
-    setFormData({ name: '', email: '', reason: '', message: '' });
-  } else {
-    alert(result.error || 'Failed to send email.');
-  }
-};
-
-
-  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   // Replace this with your backend or service endpoint
-  //   const response = await fetch("/api/contact", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(formData),
-  //   });
-
-  //   if (response.ok) {
-  //     setStatus("success");
-  //     setFormData({ name: "", email: "", reason: "Feedback", message: "" });
-  //   } else {
-  //     setStatus("error");
-  //   }
-  // };
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", reason: "", message: "" });
+      } else {
+        setStatus("error");
+        console.error(result.error || "Failed to send email.");
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+      setStatus("error");
+    }
+  };
 
   return (
     <motion.div
@@ -102,8 +88,12 @@ const Contact = () => {
             name="reason"
             value={formData.reason}
             onChange={handleChange}
+            required
             className="w-full border rounded px-4 py-2"
           >
+            <option value="" disabled>
+              -- Select a reason --
+            </option>
             <option>Feedback</option>
             <option>Technical Help</option>
             <option>Project Collaboration</option>
@@ -133,13 +123,13 @@ const Contact = () => {
         </button>
 
         {status === "success" && (
-          <p className="text-green-600 font-medium">
-            Message sent successfully!
+          <p className="text-green-600 font-medium mt-2">
+            ✅ Message sent successfully!
           </p>
         )}
         {status === "error" && (
-          <p className="text-red-600 font-medium">
-            Something went wrong. Please try again.
+          <p className="text-red-600 font-medium mt-2">
+            ❌ Something went wrong. Please try again.
           </p>
         )}
       </form>
