@@ -44,9 +44,13 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: "About Us",
-    link: "/about",
+    label: "Company",
+    link: "#",
     children: [
+      {
+        label: "About",
+        link: "/about",
+      },
       {
         label: "Team",
         link: "/team",

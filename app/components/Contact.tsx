@@ -117,19 +117,19 @@ const Contact = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+          className="bg-gray-900 text-white px-6 py-2 rounded hover:bg-gray-800 transition"
         >
           Submit
         </button>
 
         {status === "success" && (
           <p className="text-green-600 font-medium mt-2">
-            ✅ Message sent successfully!
+            Message sent successfully!
           </p>
         )}
         {status === "error" && (
           <p className="text-red-600 font-medium mt-2">
-            ❌ Something went wrong. Please try again.
+            Something went wrong. Please try again.
           </p>
         )}
       </form>
