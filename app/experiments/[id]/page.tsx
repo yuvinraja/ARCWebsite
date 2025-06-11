@@ -3,12 +3,11 @@ import experiments from "../experimentsData";
 import ExperimentDetailClient from "./ExperimentDetailClient";
 
 interface ExperimentPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const ExperimentDetail = async ({ params }: ExperimentPageProps) => {
-  const awaitedparams = await params;
-  const { id } = awaitedparams;
+  const { id } = await params;
   const experiment = experiments.find((exp) => exp.id === id);
 
   if (!experiment) return notFound();
