@@ -2,12 +2,43 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowLeft, Camera, Battery, Wifi, Shield, Zap, Eye } from "lucide-react";
+import { ArrowLeft, Camera, Battery, Wifi, Shield, Zap, Eye, LucideIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import projects from "../projectsData";
 
+// Define proper TypeScript interfaces
+interface ProjectFeature {
+  icon: LucideIcon; // This ensures type safety for Lucide icons
+  title: string;
+  description: string;
+}
+
+interface ProjectSpecifications {
+  flightTime: string;
+  range: string;
+  camera: string;
+  weatherResistance: string;
+  maxSpeed: string;
+  payload: string;
+}
+
+interface BaseProject {
+  id: string;
+  title: string;
+  shortDescription: string;
+  imageUrl: string;
+  category: string;
+}
+
+interface EnhancedProject extends BaseProject {
+  longDescription: string;
+  specifications: ProjectSpecifications;
+  features: ProjectFeature[];
+  applications: string[];
+}
+
 // Placeholder data that would typically come from a more detailed database
-const getPlaceholderData = (project: any) => ({
+const getPlaceholderData = (project: BaseProject): EnhancedProject => ({
   ...project,
   longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   specifications: {
@@ -65,7 +96,7 @@ const DroneDetailPage = () => {
   const projectId = params?.id as string;
   
   // Find the project from projectsData
-  const project = projects.find(p => p.id === projectId);
+  const project = projects.find((p: BaseProject) => p.id === projectId);
   
   if (!project) {
     return (
@@ -190,7 +221,7 @@ const DroneDetailPage = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {droneData.features.map((feature, index) => (
+            {droneData.features.map((feature: ProjectFeature, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -227,7 +258,7 @@ const DroneDetailPage = () => {
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Technical Specifications</h2>
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-                {Object.entries(droneData.specifications).map(([key, value], index) => (
+                {Object.entries(droneData.specifications).map(([key, value]: [string, string], index: number) => (
                   <div key={key} className={`p-4 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
                     <div className="flex justify-between items-center">
                       <span className="font-medium text-gray-700 capitalize">
@@ -249,7 +280,7 @@ const DroneDetailPage = () => {
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Applications</h2>
               <div className="space-y-3">
-                {droneData.applications.map((application, index) => (
+                {droneData.applications.map((application: string, index: number) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: 20 }}
