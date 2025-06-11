@@ -53,7 +53,7 @@ const navItems: NavItem[] = [
       },
       {
         label: "Contact Us",
-        link: "#",
+        link: "/contact",
       },
     ],
   },
