@@ -81,7 +81,7 @@ export default function Navbar() {
 
   return (
     <div className="relative z-[100] w-full bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg">
-      <div className="mx-auto flex w-full max-w-7xl justify-between px-4 py-5 text-sm">
+      <div className="mx-auto flex justify-between px-5 py-5 text-sm">
         <section ref={animationParent} className="flex items-center gap-10">
           <Logo />
           {isSideMenuOpen && (
@@ -124,12 +124,12 @@ function NavItem({ label, link, children }: NavItem) {
       </Link>
 
       {children && (
-        <div className="absolute z-[200] right-0 top-10 hidden w-auto flex-col gap-1 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 bg-white/10 backdrop-blur py-3 shadow-lg transition-all group-hover:flex">
+        <div className="absolute z-[200] right-0 top-10 hidden w-auto flex-col gap-1 rounded-lg bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 bg-white/10 backdrop-blur py-3 shadow-lg transition-all group-hover:flex">
           {children.map((child, i) => (
             <div key={i} className="w-full">
               <Link
                 href={child.link ?? "#"}
-                className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-white hover:text-yellow-200"
+                className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-white hover:text-yellow-200 hover:font-bold"
               >
                 <span className="whitespace-nowrap pl-3">{child.label}</span>
               </Link>
