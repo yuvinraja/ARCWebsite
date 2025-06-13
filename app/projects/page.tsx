@@ -16,10 +16,10 @@ const ProjectsPage = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Drone Solutions
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Drone Solutions
+            </h2>
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Cutting-edge drone technology for surveillance, cinematography, and specialized applications
           </p>
         </motion.div>
