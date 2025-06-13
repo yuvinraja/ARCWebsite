@@ -1,4 +1,37 @@
 const projects = [
+    {
+    id: "drone-5",
+    category: "Drones",
+    title: "Indoor Autonomous Drone",
+    shortDescription: "Designed to navigate indoor environments using vision and SLAM without GPS.",
+    imageUrl: "/drone-images/img5.png",
+    gallery: {
+      images: [
+        "/gallery/drone5/img1.jpg",
+      ],
+      videos: [
+        "/videos/video3.mp4",
+        "/videos/video2.mp4"
+      ]
+    }
+  },
+  {
+    id: "drone-6",
+    category: "Drones",
+    title: "Tracking and Mapping Drone",
+    shortDescription: "Equipped with LIDAR and GPS for precise mapping and tracking in various terrains.",
+    imageUrl: "/drone-images/img6.png",
+    gallery: {
+      images: [
+        "/gallery/drone6/img1.jpg",
+        "/gallery/drone6/img2.jpg",
+        "/gallery/drone6/img3.jpg",
+      ],
+      videos: [
+        "/videos/video1.mp4",
+      ]
+    }
+  },
   {
     id: "drone-1",
     category: "Drones",
@@ -49,39 +82,7 @@ const projects = [
       ],
     }
   },
-  {
-    id: "drone-5",
-    category: "Drones",
-    title: "Indoor Autonomous Drone",
-    shortDescription: "Designed to navigate indoor environments using vision and SLAM without GPS.",
-    imageUrl: "/drone-images/img5.png",
-    gallery: {
-      images: [
-        "/gallery/drone5/img1.jpg",
-      ],
-      videos: [
-        "/videos/video3.mp4",
-        "/videos/video2.mp4"
-      ]
-    }
-  },
-  {
-    id: "drone-6",
-    category: "Drones",
-    title: "Tracking and Mapping Drone",
-    shortDescription: "Equipped with LIDAR and GPS for precise mapping and tracking in various terrains.",
-    imageUrl: "/drone-images/img6.png",
-    gallery: {
-      images: [
-        "/gallery/drone6/img1.jpg",
-        "/gallery/drone6/img2.jpg",
-        "/gallery/drone6/img3.jpg",
-      ],
-      videos: [
-        "/videos/video1.mp4",
-      ]
-    }
-  },
+
 ];
 
 export default projects;
