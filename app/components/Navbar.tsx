@@ -49,7 +49,7 @@ const navItems: NavItem[] = [
     children: [
       {
         label: "About",
-        link: "/about",
+        link: "/#about",
       },
       {
         label: "Team",
@@ -129,7 +129,7 @@ function NavItem({ label, link, children }: NavItem) {
             <div key={i} className="w-full">
               <Link
                 href={child.link ?? "#"}
-                className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-white hover:text-yellow-200 hover:font-bold"
+                className="flex cursor-pointer items-center py-1 pl-6 pr-8 text-white hover:text-shadow-lg hover:bg-white/10 rounded"
               >
                 <span className="whitespace-nowrap pl-3">{child.label}</span>
               </Link>
