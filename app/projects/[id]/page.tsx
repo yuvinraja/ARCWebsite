@@ -121,46 +121,50 @@ const DroneDetailPage = () => {
 
   const droneData = getPlaceholderData(project);
 
-  // Media Modal Component
-  const MediaModal = () => {
-    if (!selectedMedia) return null;
+const MediaModal = () => {
+  if (!selectedMedia) return null;
 
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-        onClick={() => setSelectedMedia(null)}
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center px-4 sm:px-6"
+      onClick={() => setSelectedMedia(null)}
+    >
+      <div
+        className="relative w-full max-w-5xl max-h-[90vh] flex justify-center items-center"
+        onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative max-w-6xl max-h-full">
-          <button
-            onClick={() => setSelectedMedia(null)}
-            className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-          >
-            <X className="w-8 h-8" />
-          </button>
-          
-          {selectedMedia.type === 'image' ? (
-            <Image
-              src={selectedMedia.src}
-              alt="Product media"
-              width={1200}
-              height={800}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-          ) : (
-            <video
-              src={selectedMedia.src}
-              controls
-              autoPlay
-              className="max-w-full max-h-full rounded-lg"
-            />
-          )}
-        </div>
-      </motion.div>
-    );
-  };
+        {/* Close Button */}
+        <button
+          onClick={() => setSelectedMedia(null)}
+          className="absolute top-4 right-4 text-white hover:text-gray-300 transition"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        {/* Media */}
+        {selectedMedia.type === "image" ? (
+          <Image
+            src={selectedMedia.src}
+            alt="Product media"
+            width={1200}
+            height={800}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          />
+        ) : (
+          <video
+            src={selectedMedia.src}
+            controls
+            autoPlay
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          />
+        )}
+      </div>
+    </motion.div>
+  );
+};
 
   return (
     <div className="min-h-screen bg-gray-50">
