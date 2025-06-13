@@ -2,8 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowLeft, Camera, Battery, Wifi, Shield, Zap, Eye, LucideIcon } from "lucide-react";
+import { ArrowLeft, Camera, Battery, Wifi, Shield, Zap, Eye, LucideIcon, Play, X } from "lucide-react";
 import { useParams } from "next/navigation";
+import { useState } from "react";
 import projects from "../projectsData";
 
 // Define proper TypeScript interfaces
@@ -28,6 +29,10 @@ interface BaseProject {
   shortDescription: string;
   imageUrl: string;
   category: string;
+  gallery?: {
+    images?: string[];
+    videos?: string[];
+  };
 }
 
 interface EnhancedProject extends BaseProject {
@@ -95,6 +100,9 @@ const DroneDetailPage = () => {
   const params = useParams();
   const projectId = params?.id as string;
   
+  // State for media gallery
+  const [selectedMedia, setSelectedMedia] = useState<{ type: 'image' | 'video', src: string } | null>(null);
+  
   // Find the project from projectsData
   const project = projects.find((p: BaseProject) => p.id === projectId);
   
@@ -112,6 +120,47 @@ const DroneDetailPage = () => {
   }
 
   const droneData = getPlaceholderData(project);
+
+  // Media Modal Component
+  const MediaModal = () => {
+    if (!selectedMedia) return null;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+        onClick={() => setSelectedMedia(null)}
+      >
+        <div className="relative max-w-6xl max-h-full">
+          <button
+            onClick={() => setSelectedMedia(null)}
+            className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          
+          {selectedMedia.type === 'image' ? (
+            <Image
+              src={selectedMedia.src}
+              alt="Product media"
+              width={1200}
+              height={800}
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+          ) : (
+            <video
+              src={selectedMedia.src}
+              controls
+              autoPlay
+              className="max-w-full max-h-full rounded-lg"
+            />
+          )}
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -203,6 +252,103 @@ const DroneDetailPage = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Media Gallery Section */}
+      {(droneData.gallery?.images?.length || droneData.gallery?.videos?.length) && (
+        <div className="bg-white py-16 border-t border-gray-200">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Gallery</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Explore detailed images and videos showcasing the design, capabilities, and real-world applications
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {/* Images */}
+              {droneData.gallery?.images?.map((image, index) => (
+                <motion.div
+                  key={`image-${index}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300"
+                  onClick={() => setSelectedMedia({ type: 'image', src: image })}
+                >
+                  <Image
+                    src={image}
+                    alt={`${droneData.title} gallery image ${index + 1}`}
+                    fill={true}
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                    <Camera className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Videos */}
+              {droneData.gallery?.videos?.map((video, index) => (
+                <motion.div
+                  key={`video-${index}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: (droneData.gallery?.images?.length || 0 + index) * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative aspect-square bg-gray-900 rounded-xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300"
+                  onClick={() => setSelectedMedia({ type: 'video', src: video })}
+                >
+                  <video
+                    src={video}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    muted
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white bg-opacity-90 rounded-full flex items-center justify-center group-hover:bg-opacity-100 transition-all duration-300">
+                      <Play className="w-6 h-6 text-gray-900 ml-1" />
+                    </div>
+                  </div>
+                  <div className="absolute top-3 right-3 px-2 py-1 bg-black bg-opacity-70 text-white text-xs font-medium rounded">
+                    VIDEO
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Gallery Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="flex justify-center items-center mt-8 space-x-8 text-sm text-gray-600"
+            >
+              {droneData.gallery?.images?.length && (
+                <div className="flex items-center">
+                  <Camera className="w-4 h-4 mr-2" />
+                  {droneData.gallery.images.length} Image{droneData.gallery.images.length !== 1 ? 's' : ''}
+                </div>
+              )}
+              {droneData.gallery?.videos?.length && (
+                <div className="flex items-center">
+                  <Play className="w-4 h-4 mr-2" />
+                  {droneData.gallery.videos.length} Video{droneData.gallery.videos.length !== 1 ? 's' : ''}
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      )}
+
+      {/* Media Modal */}
+      <MediaModal />
 
       {/* Features Section */}
       <div className="bg-white py-16 border-t border-gray-200">

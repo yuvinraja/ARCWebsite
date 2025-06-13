@@ -66,10 +66,6 @@ const navItems: NavItem[] = [
     link: "#",
   },
   {
-    label: "Careers",
-    link: "#",
-  },
-  {
     label: "Blog",
     link: "#",
   },
