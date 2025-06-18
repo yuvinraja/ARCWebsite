@@ -29,5 +29,13 @@ export const blogPosts: BlogPost[] = [
     type: "reel",
     link: "https://www.instagram.com/reel/DKNrlmssN5P/",
   },
-  // Add more entries similarly
+  {
+    id: "3",
+    title: "The Importance of Education in Economic Development",
+    excerpt: "Education is the cornerstone of economic development...",
+    thumbnail: "/blog/article2.jpg",
+    date: "June 17, 2025",
+    type: "article",
+    link: "https://www.linkedin.com/posts/drmarthaboeckenfeld_education-is-more-than-just-a-diploma-it-activity-7339902659438522370-oztH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD31UpcBDhbXBTskZvdA2flJ8xhjGYRiScs"
+  }
 ];

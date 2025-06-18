@@ -50,7 +50,9 @@ const BlogPage = () => {
                       src={post.thumbnail}
                       alt={post.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (min-width: 769px) 50vw" 
                       className="object-cover"
+                      priority={index < 2} // Prioritize loading for the first two images
                     />
                   </div>
                   <div className="p-4">
