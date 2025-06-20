@@ -59,8 +59,7 @@ const Contact = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-16">
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50">
+    <div className="min-h-screen bg-gray-50 pt-16">
         {/* Hero Section */}
         <div className="text-center mb-12 ">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -261,7 +260,6 @@ const Contact = () => {
           </div>
         </section>
       </div>
-    </main>
   );
 };
 
