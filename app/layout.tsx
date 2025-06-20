@@ -13,15 +13,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Voltaero Technologies',
     description: 'Experience our innovative drone technology and AI products.',
-    url: 'https://voltaero.tech', // Replace with your domain
+    url: 'https://voltaero.vercel.app/', // Replace with your domain
     siteName: 'Voltaero Ventures',
-    images: [
-      {
-        url: '/og-image.png', // Place an OG image in public/
-        width: 1200,
-        height: 630,
-      },
-    ],
     locale: 'en_US',
     type: 'website',
   },
