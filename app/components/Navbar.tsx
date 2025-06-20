@@ -69,10 +69,6 @@ const navItems: NavItem[] = [
     label: "Blog",
     link: "/blog",
   },
-  {
-    label: "Showcase",
-    link: "/showcase",
-  },
 ];
 
 export default function Navbar() {

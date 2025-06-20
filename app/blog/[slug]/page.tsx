@@ -11,9 +11,9 @@ import { Calendar, User, Tag, ArrowLeft } from "lucide-react"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 const portableTextComponents: PortableTextComponents = {
@@ -72,10 +72,10 @@ const portableTextComponents: PortableTextComponents = {
 };
 
 export default async function BlogPostPage({ params }: Props) {
-  const post: BlogPost = await client.fetch(singlePostQuery, { slug: params.slug });
+  const { slug } = await params;
+  const post: BlogPost = await client.fetch(singlePostQuery, { slug });
 
   return (
-    // your single post UI here
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative py-20 px-6 overflow-hidden">
