@@ -66,6 +66,10 @@ const navItems: NavItem[] = [
     link: "#",
   },
   {
+    label: "Showcase",
+    link: "/showcase",
+  },
+  {
     label: "Blog",
     link: "/blog",
   },
