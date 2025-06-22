@@ -238,7 +238,7 @@ export default function ShowcasePage() {
                 {/* Media Grid */}
                 {event.media && event.media.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {event.media.map((mediaItem, mediaIndex) => (
+                    {(event.media as MediaItem[]).map((mediaItem, mediaIndex) => (
                       <Card
                         key={mediaIndex}
                         className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
@@ -251,7 +251,7 @@ export default function ShowcasePage() {
                                 {mediaItem.thumbnail ? (
                                   <Image
                                     src={mediaItem.thumbnail}
-                                    alt={mediaItem.alt}
+                                    alt={mediaItem.alt || "Showcase media"}
                                     fill
                                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                                   />
