@@ -16,47 +16,19 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    label: "Emerging Tech",
-    link: "#",
-    children: [
-      {
-        label: "Drones",
-        link: "/experiments",
-      },
-      {
-        label: "Ground Vehicles",
-        link: "/experiments",
-      },
-      {
-        label: "Autonomous Systems",
-        link: "/experiments",
-      },
-    ],
-  },
-  {
-    label: "Projects",
-    link: "#",
-    children: [
-      {
-        label: "Drones",
-        link: "/projects",
-      },
-    ],
-  },
-  {
     label: "Company",
     link: "#",
     children: [
       {
-        label: "About",
+        label: "About Us",
         link: "/#about",
       },
       {
-        label: "Team",
+        label: "Our Team",
         link: "/team",
       },
       {
-        label: "Contact Us",
+        label: "Contact",
         link: "/contact",
       },
     ],
@@ -64,6 +36,14 @@ const navItems: NavItem[] = [
   {
     label: "Products",
     link: "#",
+  },
+  {
+    label: "Technology",
+    link: "#",
+  },
+  {
+    label: "Projects",
+    link: "/projects",
   },
   {
     label: "Showcase",
@@ -81,7 +61,7 @@ export default function Navbar() {
 
   return (
     <div className="relative z-[100] w-full bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg">
-      <div className="mx-auto flex justify-between px-5 py-5 text-sm">
+      <div className="mx-auto flex justify-between px-5 py-5 text-base">
         <section ref={animationParent} className="flex items-center gap-10">
           <Logo />
           {isSideMenuOpen && (
@@ -124,7 +104,7 @@ function NavItem({ label, link, children }: NavItem) {
       </Link>
 
       {children && (
-        <div className="absolute z-[200] right-0 top-10 hidden w-auto flex-col gap-1 rounded-lg bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 bg-white/10 backdrop-blur py-3 shadow-lg transition-all group-hover:flex">
+        <div className="absolute z-[200] right-0 top-10 hidden w-auto flex-col gap-1 rounded-lg bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 bg-white/10 backdrop-blur py-3 shadow-lg transition-all group-hover:flex border border-white/10">
           {children.map((child, i) => (
             <div key={i} className="w-full">
               <Link
