@@ -35,7 +35,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white -mb-16 -mt-16">
       {/* Hero Section with Slideshow */}
       <section className="relative h-screen overflow-hidden">
         {/* Slideshow Container */}

@@ -95,7 +95,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post: BlogPost = await client.fetch(singlePostQuery, { slug });
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="-mb-16 -mt-16">
       {/* Hero Section */}
       <section className="relative py-20 px-6 overflow-hidden">
         {post.mainImage && (

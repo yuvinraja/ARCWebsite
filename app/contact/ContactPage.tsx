@@ -64,7 +64,7 @@ const Contact = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <div>
+      <div className="-mb-16">
         <SectionHeading
           title="Contact Us"
           subtitle="We would love to hear from you! Please fill out the form below and we

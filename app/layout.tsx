@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Voltaero Technologies | Drones, AI, Innovation",
@@ -32,7 +32,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <main className="min-h-screen bg-gradient-to-r from-gray-50 to-purple-50 pt-16 pb-16">
+        <main className="min-h-screen bg-gray-50 pt-16 pb-16">
+        {/* <main className="min-h-screen bg-gradient-to-r from-gray-50 to-purple-50 pt-16 pb-16"> */}
           {children}
         </main>
         <Footer />
