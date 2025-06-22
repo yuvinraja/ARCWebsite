@@ -10,6 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -57,6 +58,11 @@ const Contact = () => {
   };
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
     <div className="min-h-screen bg-gray-50 pt-16">
       {/* Hero Section */}
       <div className="text-center mb-12 ">
@@ -258,6 +264,7 @@ const Contact = () => {
         </div>
       </section>
     </div>
+    </motion.div>
   );
 };
 

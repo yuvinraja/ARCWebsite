@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | Voltaero Technologies',
+  title: 'Terms and Conditions',
   description: 'Terms and Conditions for Voltaero Technologies. Review our terms of service, user obligations, and legal agreements for using our services.',
   keywords: 'terms and conditions, terms of service, user agreement, legal terms, Voltaero Technologies',
   robots: 'index, follow',
   openGraph: {
-    title: 'Terms and Conditions | Voltaero Technologies',
+    title: 'Terms and Conditions',
     description: 'Terms and Conditions for Voltaero Technologies. Review our terms of service and legal agreements.',
     type: 'website',
   },

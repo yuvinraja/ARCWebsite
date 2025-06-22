@@ -1,18 +1,21 @@
-"use client";
+import { Metadata } from "next";
+import Contact from "./ContactPage";
 
-import React from "react";
-import Contact from "@/app/components/Contact";
-import { motion } from "framer-motion";
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Get in touch with us for any inquiries or support.",
+  keywords: "contact, support, inquiries, customer service",
+  robots: "index, follow",
+  openGraph: {
+    title: "Contact Us",
+    description: "Get in touch with us for any inquiries or support.",
+    type: "website",
+  },
+};
 
 const Page = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    >
       <Contact />
-    </motion.div>
   );
 };
 

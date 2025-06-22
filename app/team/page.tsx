@@ -1,5 +1,18 @@
 import TeamCard from "./TeamCard";
 import { teamMembers } from "./teamData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Our Team',
+  description: 'Meet the talented individuals behind our success.',
+  keywords: 'team, professionals, expertise, collaboration',
+  robots: 'index, follow',
+  openGraph: {
+    title: 'Our Team',
+    description: 'Meet the talented individuals behind our success.',
+    type: 'website',
+  },
+};
 
 export default function TeamPage() {
   return (
