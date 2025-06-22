@@ -32,7 +32,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        {children}
+        <main className="min-h-screen bg-gradient-to-r from-gray-50 to-purple-50 pt-16 pb-16">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

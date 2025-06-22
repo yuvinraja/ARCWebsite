@@ -35,11 +35,11 @@ const navItems: NavItem[] = [
   },
   {
     label: "Products",
-    link: "#",
+    link: "/products",
   },
   {
     label: "Technology",
-    link: "#",
+    link: "/experiments",
   },
   {
     label: "Projects",

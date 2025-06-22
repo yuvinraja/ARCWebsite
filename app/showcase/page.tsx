@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { X, Play, ZoomIn, Calendar, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
+import SectionHeading from "@/components/SectionHeading";
+import GradientHeading from "@/components/GradientHeading";
+import CallToAction from "@/components/CallToAction";
 
 import { client } from "@/sanity/lib/client";
 import { showcaseEventsQuery } from "@/sanity/lib/showcaseQuery";
@@ -192,24 +195,18 @@ export default function ShowcasePage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="-mb-16">
       {/* Hero Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500">
-        <div className="max-w-6xl mx-auto text-center text-white">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Event Showcase
-          </h1>
-          <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-            Explore our participation in major technology events, conferences,
+      <SectionHeading
+        title="Event Showcase"
+        subtitle="Explore our participation in major technology events, conferences,
             and demonstrations showcasing autonomous technologies and AI
-            innovations
-          </p>
-        </div>
-      </section>
+            innovations"
+      />
 
       {/* Events Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto space-y-20">
+      <div>
+        <div className="mx-auto space-y-20 pb-16">
           {events.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-gray-500 text-lg">No showcase events found.</p>
@@ -218,14 +215,11 @@ export default function ShowcasePage() {
             events.map((event, eventIndex) => (
               <div key={event._id} className="space-y-8">
                 {/* Event Header */}
-                <div className="text-center space-y-4">
-                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent text-transform: uppercase">
-                    {event.title}
-                  </h2>
-                  <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    {event.description}
-                  </p>
-                  <div className="flex flex-wrap items-center justify-center gap-6 text-gray-500">
+                <GradientHeading
+                  title={event.title}
+                  description={event.description}
+                >
+                  <div className="flex flex-wrap items-center justify-center gap-6 text-gray-50">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-5 h-5" />
                       <span>{event.date}</span>
@@ -235,11 +229,11 @@ export default function ShowcasePage() {
                       <span>{event.location}</span>
                     </div>
                   </div>
-                </div>
+                </GradientHeading>
 
                 {/* Media Grid */}
                 {event.media && event.media.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-6">
                     {(event.media as MediaItem[]).map(
                       (mediaItem, mediaIndex) => (
                         <Card
@@ -306,38 +300,17 @@ export default function ShowcasePage() {
             ))
           )}
         </div>
-      </section>
+      </div>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-purple-50 to-pink-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Want to See More?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Interested in our latest projects and innovations? Explore our
+      <CallToAction
+        title="Want to See More?"
+        description="Interested in our latest projects and innovations? Explore our
             solutions or get in touch to learn more about our autonomous
-            technologies.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3"
-              onClick={() => (window.location.href = "/projects")}
-            >
-              Explore Our Projects
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-3"
-              onClick={() => (window.location.href = "/contact")}
-            >
-              Contact Us
-            </Button>
-          </div>
-        </div>
-      </section>
+            technologies."
+        primaryButton={{ label: "Explore Our Projects", href: "/projects" }}
+        secondaryButton={{ label: "Contact Us", href: "/contact", variant: "outline" }}
+      />
 
       {/* Fullscreen Modal */}
       {selectedMedia && (

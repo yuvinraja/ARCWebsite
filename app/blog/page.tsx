@@ -6,24 +6,20 @@ import type { BlogPost } from "@/sanity/schemaTypes/blogPost";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, User } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import SectionHeading from "@/components/SectionHeading";
 
 export default async function BlogPage() {
   const posts: BlogPost[] = await client.fetch(allPostsQuery);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
+    <>
       {/* Hero Section */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-          OUR BLOG
-        </h2>
-        <p className="text-lg text-gray-700 mb-8">
-          Insights, innovations, and updates from the world of autonomous
-          technologies and AI
-        </p>
-      </div>
+      <SectionHeading 
+      title="Our Blog"
+      subtitle="Explore the latest insights and innovations in autonomous technologies and AI"
+      />
 
       {/* Blog Posts Grid */}
       <section className=" px-6">
@@ -107,6 +103,6 @@ export default async function BlogPage() {
           )}
         </div>
       </section>
-    </div>
+    </>
   );
 }
