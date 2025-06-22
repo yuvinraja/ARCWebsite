@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface TeamCardProps {
-  name: string
-  regNo: string
-  image: string
-  bio: string
+  name: string;
+  regNo: string;
+  image: string;
+  bio: string;
 }
 
 export default function TeamCard({ name, regNo, image, bio }: TeamCardProps) {
@@ -31,5 +31,5 @@ export default function TeamCard({ name, regNo, image, bio }: TeamCardProps) {
       <p className="text-sm text-gray-500">{regNo}</p>
       <p className="text-sm text-gray-600">{bio}</p>
     </motion.div>
-  )
+  );
 }

@@ -1,4 +1,3 @@
-// sanity/lib/showcaseQuery.ts
 export const showcaseEventsQuery = `*[_type == "showcaseEvent"] | order(date desc) {
   _id,
   title,

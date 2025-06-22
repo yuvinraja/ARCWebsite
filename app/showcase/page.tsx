@@ -1,4 +1,3 @@
-//app/showcase/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -108,49 +107,52 @@ export default function ShowcasePage() {
       try {
         setLoading(true);
         const data = await client.fetch(showcaseEventsQuery);
-        
+
         if (!data) {
           throw new Error("No data returned from Sanity");
         }
 
         const formatted = data.map((event: SanityShowcaseEvent) => ({
           ...event,
-          media: (event.media || []).map((m: SanityMediaItem) => {
-            // Handle video items
-            if (m.type === "video") {
-              if (!m.videoUrl) {
-                console.warn("Video item missing video URL", m);
-                return null;
+          media: (event.media || [])
+            .map((m: SanityMediaItem) => {
+              // Handle video items
+              if (m.type === "video") {
+                if (!m.videoUrl) {
+                  console.warn("Video item missing video URL", m);
+                  return null;
+                }
+
+                return {
+                  type: "video" as const,
+                  url: m.videoUrl,
+                  alt: m.alt || "Showcase Video",
+                  thumbnail:
+                    m.thumbnailUrl || "/video-thumbnail-placeholder.jpg",
+                };
               }
-              
-              return {
-                type: "video" as const,
-                url: m.videoUrl,
-                alt: m.alt || "Showcase Video",
-                thumbnail: m.thumbnailUrl || "/video-thumbnail-placeholder.jpg",
-              };
-            }
-            
-            // Handle image items
-            if (m.type === "image") {
-              if (!m.url) {
-                console.warn("Image item missing URL", m);
-                return null;
+
+              // Handle image items
+              if (m.type === "image") {
+                if (!m.url) {
+                  console.warn("Image item missing URL", m);
+                  return null;
+                }
+
+                return {
+                  type: "image" as const,
+                  url: m.url,
+                  alt: m.alt || "Showcase Image",
+                  thumbnail: m.lqip,
+                };
               }
-              
-              return {
-                type: "image" as const,
-                url: m.url,
-                alt: m.alt || "Showcase Image",
-                thumbnail: m.lqip,
-              };
-            }
-            
-            console.warn("Unknown media type", m);
-            return null;
-          }).filter(Boolean) as MediaItem[],
+
+              console.warn("Unknown media type", m);
+              return null;
+            })
+            .filter(Boolean) as MediaItem[],
         }));
-        
+
         console.log("Formatted events:", formatted); // Debug log
         setEvents(formatted);
       } catch (err) {
@@ -238,53 +240,55 @@ export default function ShowcasePage() {
                 {/* Media Grid */}
                 {event.media && event.media.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {(event.media as MediaItem[]).map((mediaItem, mediaIndex) => (
-                      <Card
-                        key={mediaIndex}
-                        className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
-                        onClick={() => setSelectedMedia(mediaItem)}
-                      >
-                        <div className="relative aspect-video overflow-hidden">
-                          {mediaItem.type === "video" ? (
-                            <>
-                              <div className="relative w-full h-full bg-gray-200">
-                                {mediaItem.thumbnail ? (
-                                  <Image
-                                    src={mediaItem.thumbnail}
-                                    alt={mediaItem.alt || "Showcase media"}
-                                    fill
-                                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center bg-gray-800">
-                                    <span className="text-white">Video</span>
-                                  </div>
-                                )}
-                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                    <Play className="w-8 h-8 text-white ml-1" />
+                    {(event.media as MediaItem[]).map(
+                      (mediaItem, mediaIndex) => (
+                        <Card
+                          key={mediaIndex}
+                          className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden cursor-pointer"
+                          onClick={() => setSelectedMedia(mediaItem)}
+                        >
+                          <div className="relative aspect-video overflow-hidden">
+                            {mediaItem.type === "video" ? (
+                              <>
+                                <div className="relative w-full h-full bg-gray-200">
+                                  {mediaItem.thumbnail ? (
+                                    <Image
+                                      src={mediaItem.thumbnail}
+                                      alt={mediaItem.alt || "Showcase media"}
+                                      fill
+                                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center bg-gray-800">
+                                      <span className="text-white">Video</span>
+                                    </div>
+                                  )}
+                                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                                      <Play className="w-8 h-8 text-white ml-1" />
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              <Image
-                                src={mediaItem.url || "/placeholder.svg"}
-                                alt={mediaItem.alt}
-                                fill
-                                className="object-cover transition-transform duration-300 group-hover:scale-110"
-                              />
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                                <div className="w-12 h-12 bg-white/0 group-hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                                  <ZoomIn className="w-6 h-6 text-white" />
+                              </>
+                            ) : (
+                              <>
+                                <Image
+                                  src={mediaItem.url || "/placeholder.svg"}
+                                  alt={mediaItem.alt}
+                                  fill
+                                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                                  <div className="w-12 h-12 bg-white/0 group-hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                                    <ZoomIn className="w-6 h-6 text-white" />
+                                  </div>
                                 </div>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </Card>
-                    ))}
+                              </>
+                            )}
+                          </div>
+                        </Card>
+                      )
+                    )}
                   </div>
                 ) : (
                   <div className="text-center py-10 text-gray-500">

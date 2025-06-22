@@ -5,7 +5,7 @@ const showcaseEvent = {
   fields: [
     { name: "title", title: "Title", type: "string" },
     { name: "description", title: "Description", type: "text" },
-    { name: "date", title: "Date", type: "string" }, // or 'date' if you want actual date type
+    { name: "date", title: "Date", type: "date" },
     { name: "location", title: "Location", type: "string" },
     {
       name: "media",

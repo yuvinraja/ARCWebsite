@@ -3,12 +3,12 @@ import { urlFor } from "@/sanity/lib/image";
 import { singlePostQuery } from "@/sanity/lib/blogQuery";
 import type { BlogPost } from "@/sanity/schemaTypes/blogPost";
 
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Calendar, User, Tag, ArrowLeft } from "lucide-react"
-import { PortableText, PortableTextComponents } from "@portabletext/react"
+import { Button } from "@/components/ui/button";
+import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 type Props = {
   params: Promise<{
@@ -21,13 +21,20 @@ const portableTextComponents: PortableTextComponents = {
     image: ({ value }) => (
       <div className="my-8">
         <Image
-          src={urlFor(value.asset).width(800).height(400).url() || "/placeholder.svg"}
+          src={
+            urlFor(value.asset).width(800).height(400).url() ||
+            "/placeholder.svg"
+          }
           alt={value.alt || "Blog image"}
           width={800}
           height={400}
           className="rounded-lg shadow-lg w-full"
         />
-        {value.caption && <p className="text-center text-sm text-gray-500 mt-2">{value.caption}</p>}
+        {value.caption && (
+          <p className="text-center text-sm text-gray-500 mt-2">
+            {value.caption}
+          </p>
+        )}
       </div>
     ),
   },
@@ -37,9 +44,17 @@ const portableTextComponents: PortableTextComponents = {
         {children}
       </h1>
     ),
-    h2: ({ children }) => <h2 className="text-2xl font-bold mt-6 mb-3 text-gray-800">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl font-semibold mt-4 mb-2 text-gray-800">{children}</h3>,
-    normal: ({ children }) => <p className="mb-4 text-gray-700 leading-relaxed">{children}</p>,
+    h2: ({ children }) => (
+      <h2 className="text-2xl font-bold mt-6 mb-3 text-gray-800">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-xl font-semibold mt-4 mb-2 text-gray-800">
+        {children}
+      </h3>
+    ),
+    normal: ({ children }) => (
+      <p className="mb-4 text-gray-700 leading-relaxed">{children}</p>
+    ),
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-purple-500 pl-4 my-6 italic text-gray-600 bg-purple-50 py-2">
         {children}
@@ -48,10 +63,14 @@ const portableTextComponents: PortableTextComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-4 text-gray-700 space-y-1">{children}</ul>
+      <ul className="list-disc list-inside mb-4 text-gray-700 space-y-1">
+        {children}
+      </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-4 text-gray-700 space-y-1">{children}</ol>
+      <ol className="list-decimal list-inside mb-4 text-gray-700 space-y-1">
+        {children}
+      </ol>
     ),
   },
   marks: {
@@ -83,7 +102,10 @@ export default async function BlogPostPage({ params }: Props) {
           <>
             <div className="absolute inset-0">
               <Image
-                src={urlFor(post.mainImage.asset).width(1200).height(600).url() || "/placeholder.svg"}
+                src={
+                  urlFor(post.mainImage.asset).width(1200).height(600).url() ||
+                  "/placeholder.svg"
+                }
                 alt={post.mainImage.alt || post.title}
                 fill
                 className="object-cover"
@@ -102,7 +124,9 @@ export default async function BlogPostPage({ params }: Props) {
             Back to Blog
           </Link>
 
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">{post.title}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+            {post.title}
+          </h1>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-white/90">
             <div className="flex items-center gap-2">
@@ -144,7 +168,10 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <article className="prose prose-lg max-w-none">
-            <PortableText value={post.body} components={portableTextComponents} />
+            <PortableText
+              value={post.body}
+              components={portableTextComponents}
+            />
           </article>
         </div>
       </section>
@@ -155,7 +182,9 @@ export default async function BlogPostPage({ params }: Props) {
           <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             Interested in Our Solutions?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">Learn more about our autonomous technologies and AI innovations</p>
+          <p className="text-xl text-gray-600 mb-8">
+            Learn more about our autonomous technologies and AI innovations
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/projects">
               <Button
@@ -166,7 +195,11 @@ export default async function BlogPostPage({ params }: Props) {
               </Button>
             </Link>
             <Link href="/blog">
-              <Button size="lg" variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-purple-600 text-purple-600 hover:bg-purple-50"
+              >
                 Read More Articles
               </Button>
             </Link>

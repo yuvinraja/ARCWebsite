@@ -1,5 +1,5 @@
 export const teamMembers = [
-{
+  {
     name: "S Srivatzan",
     regNo: "22BME0180",
     image: "/student-images/srivatzan.png",
@@ -17,17 +17,17 @@ export const teamMembers = [
     image: "/student-images/ali.jpg",
     bio: "I specialize in machine learning and deep learning, with a strong focus on building intelligent, adaptive systems. My work spans from developing robust ML/DL models to designing agentic tools that enable autonomous decision-making, contextual reasoning, and real-time responsiveness in complex environments.",
   },
-    {
+  {
     name: "Jahnavi",
     regNo: "",
     image: "/student-images/jahnavi.jpg",
     bio: "I'm a Computer Science undergraduate specializing in Information Security at VIT Vellore, with a broad technical background across cybersecurity, AI, and full-stack development. I've worked on strategic and advisory roles in security-focused environments, alongside building scalable solutions involving cloud platforms and intelligent systems. With experience in both technical implementation and high-level planning, I bring a well-rounded, impact-driven approach to every project.",
   },
-//     {
-//     name: "Divya Rao",
-//     regNo: "21BCE5678",
-//     image: "/student-images/divya.jpg",
-//     bio: "Electronics wizard working on real-time drone communication systems.",
-//   },
+  //     {
+  //     name: "Divya Rao",
+  //     regNo: "21BCE5678",
+  //     image: "/student-images/divya.jpg",
+  //     bio: "Electronics wizard working on real-time drone communication systems.",
+  //   },
   // Add more...
 ];

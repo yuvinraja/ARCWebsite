@@ -6,41 +6,47 @@ const Footer = () => {
   return (
     <>
       <footer className="bg-white">
-      <div className="mx-auto w-full max-w-screen-xl">
-        <div className="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
+        <div className="mx-auto w-full max-w-screen-xl">
+          <div className="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
+            {/* Contact Info */}
+            <div>
+              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+                Contact
+              </h2>
+              <div className="text-gray-500 font-medium space-y-4">
+                {/* Email */}
+                <div className="flex items-center gap-2">
+                  <EnvelopeIcon className="w-5 h-5 text-gray-700" />
+                  <a
+                    href="mailto:voltaerotech@gmail.com"
+                    className="hover:underline text-sm"
+                  >
+                    voltaerotech@gmail.com
+                  </a>
+                </div>
 
-          {/* Contact Info */}
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Contact</h2>
-            <div className="text-gray-500 font-medium space-y-4">
+                {/* Phone */}
+                <div className="flex items-center gap-2">
+                  <PhoneIcon className="w-5 h-5 text-gray-700" />
+                  <a
+                    href="tel:+918848653573"
+                    className="hover:underline text-sm"
+                  >
+                    +91 88486 53573
+                  </a>
+                </div>
 
-              {/* Email */}
-              <div className="flex items-center gap-2">
-                <EnvelopeIcon className="w-5 h-5 text-gray-700" />
-                <a href="mailto:voltaerotech@gmail.com" className="hover:underline text-sm">
-                  voltaerotech@gmail.com
-                </a>
+                {/* Address */}
+                <div className="flex items-center gap-2">
+                  <MapPinIcon className="w-5 h-5 text-gray-700" />
+                  <span className="text-sm">
+                    D/O No 2, Rice Mill Compound,
+                    <br />
+                    Kongareddypalli, Chittoor, AP - 517001
+                  </span>
+                </div>
               </div>
-
-              {/* Phone */}
-              <div className="flex items-center gap-2">
-                <PhoneIcon className="w-5 h-5 text-gray-700" />
-                <a href="tel:+918848653573" className="hover:underline text-sm">
-                  +91 88486 53573
-                </a>
-              </div>
-
-              {/* Address */}
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="w-5 h-5 text-gray-700" />
-                <span className="text-sm">
-                  D/O No 2, Rice Mill Compound,<br/>
-                  Kongareddypalli, Chittoor, AP - 517001
-                </span>
-              </div>
-
             </div>
-          </div>
 
             {/* Navigation Links */}
             <div>
@@ -104,7 +110,8 @@ const Footer = () => {
           {/* Bottom Section */}
           <div className="px-4 py-6 bg-gray-100 md:flex md:items-center md:justify-between">
             <span className="text-sm text-gray-500 sm:text-center">
-              © 2025 Voltaero Technologies Private Limited™. All Rights Reserved.
+              © 2025 Voltaero Technologies Private Limited™. All Rights
+              Reserved.
             </span>
             <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
               <a href="#" className="text-gray-400 hover:text-gray-900">

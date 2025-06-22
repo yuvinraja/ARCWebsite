@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import projects from "./projectsData";
@@ -16,11 +16,12 @@ const ProjectsPage = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Drone Solutions
-            </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Drone Solutions
+          </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Cutting-edge drone technology for surveillance, cinematography, and specialized applications
+            Cutting-edge drone technology for surveillance, cinematography, and
+            specialized applications
           </p>
         </motion.div>
 
@@ -51,7 +52,7 @@ const ProjectsPage = () => {
                   {/* Gradient overlay for better text readability if needed */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                
+
                 {/* Content Section */}
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
@@ -63,21 +64,26 @@ const ProjectsPage = () => {
                       Drone
                     </span>
                   </div>
-                  
+
                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
                     {exp.shortDescription}
                   </p>
-                  
+
                   {/* Call to action */}
                   <div className="flex items-center text-blue-600 font-medium text-sm group-hover:text-blue-700 transition-colors duration-200">
                     <span>Learn more</span>
-                    <svg 
-                      className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200"
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -96,12 +102,26 @@ const ProjectsPage = () => {
           >
             <div className="max-w-md mx-auto">
               <div className="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center">
-                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                <svg
+                  className="w-12 h-12 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No drone projects yet</h3>
-              <p className="text-gray-600">Check back soon for our latest drone innovations.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                No drone projects yet
+              </h3>
+              <p className="text-gray-600">
+                Check back soon for our latest drone innovations.
+              </p>
             </div>
           </motion.div>
         )}
