@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-
 import AboutPage from "./about/AboutPage";
+import { motion } from "framer-motion";
 
 const heroImages = [
   "/hero/img1.jpg",
@@ -36,9 +36,8 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white -mb-16 -mt-16">
-      {/* Hero Section with Slideshow */}
+      {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
-        {/* Slideshow Container */}
         <div className="relative h-full">
           {heroImages.map((image, index) => (
             <div
@@ -51,20 +50,19 @@ export default function LandingPage() {
                 fill
                 src={image || "/placeholder.svg"}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover md:object-cover sm:object-contain sm:object-center"
-                priority={index === 0} // Load first slide immediately
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                className="w-full h-full object-cover"
+                priority={index === 0}
+                sizes="100vw"
                 loading={index === 0 ? "eager" : "lazy"}
-                quality={80} // Adjust quality for better performance
-                style={{ objectFit: "cover" }} // Ensure images cover the container
-                unoptimized={true} // Disable Next.js image optimization for external images
+                quality={80}
+                style={{ objectFit: "cover" }}
+                unoptimized={true}
               />
             </div>
           ))}
         </div>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
           {heroImages.map((_, index) => (
             <button
               key={index}
@@ -78,50 +76,63 @@ export default function LandingPage() {
 
         {/* Hero Content */}
         <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 z-10">
-          <div className="text-center text-white max-w-4xl">
-            {/* Background overlay for better text visibility */}
-            <div className="absolute inset-0 bg-black/40 -z-10"></div>
-            <div className="relative p-8 sm:p-12">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight drop-shadow-2xl">
-                Shaping the Future of
-                <span className="block bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg pb-[10px] ">
-                  Autonomy and AI
-                </span>
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-100 max-w-3xl mx-auto leading-relaxed px-4 drop-shadow-lg">
-                We specialize in the integration of autonomous ground and aerial
-                vehicles, swarm drone technologies, and AI-powered solutions for
-                agriculture and defense.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
-                <Link href="/projects">
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-yellow-400 to-pink-500 hover:from-yellow-500 hover:to-pink-600 text-black font-semibold px-6 sm:px-8 py-3 text-base sm:text-lg shadow-2xl"
-                  >
-                    Explore Solutions
-                  </Button>
-                </Link>
-                {/* <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-black hover:bg-gray-200 px-6 sm:px-8 py-3 text-base sm:text-lg backdrop-blur-sm shadow-2xl"
-                >
-                  Partner with Us
-                </Button> */}
-              </div>
-            </div>
-          </div>
+          <motion.div
+            className="text-center text-white max-w-4xl relative p-8 sm:p-12"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="absolute inset- -z-10"></div>
+            <motion.h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight drop-shadow-2xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              Shaping the Future of
+              <span className="block bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg pb-[10px]">
+                Autonomy and AI
+              </span>
+            </motion.h1>
+            <motion.p
+              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-100 max-w-3xl mx-auto leading-relaxed px-4 drop-shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              We specialize in the integration of autonomous ground and aerial
+              vehicles, swarm drone technologies, and AI-powered solutions for
+              agriculture and defense.
+            </motion.p>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center px-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <Link href="/projects">
+                <Button className="bg-gradient-to-r from-yellow-400 to-pink-500 hover:from-yellow-500 hover:to-pink-600 text-black font-semibold px-6 sm:px-8 py-3 text-base sm:text-lg shadow-2xl">
+                  Explore Solutions
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* About Section */}
       <AboutPage />
 
-      {/* Video Showcase Section */}
+      {/* Video Section */}
       <section className="py-20 px-6 bg-black">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               See Our Technology in Action
             </h2>
@@ -129,62 +140,56 @@ export default function LandingPage() {
               Watch our autonomous drones and AI-powered systems demonstrate
               their capabilities
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <video
-                className="w-full h-64 md:h-80 object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
+            {[1, 2].map((n, index) => (
+              <motion.div
+                key={index}
+                className="relative rounded-2xl overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <source src="/videos/video1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Swarm Drone Technology
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  Coordinated autonomous flight demonstrations
-                </p>
-              </div>
-            </div>
-
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <video
-                className="w-full h-64 md:h-80 object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-              >
-                <source src="/videos/video2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Autonomous Navigation
-                </h3>
-                <p className="text-gray-300 text-sm">
-                  GPS-denied environment navigation showcase
-                </p>
-              </div>
-            </div>
+                <video
+                  className="w-full h-64 md:h-80 object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src={`/videos/video${n}.mp4`} type="video/mp4" />
+                </video>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {n === 1
+                      ? "Swarm Drone Technology"
+                      : "Autonomous Navigation"}
+                  </h3>
+                  <p className="text-gray-300 text-sm">
+                    {n === 1
+                      ? "Coordinated autonomous flight demonstrations"
+                      : "GPS-denied environment navigation showcase"}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <Link href="/showcase">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-3 text-lg"
-              >
+              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-3 text-lg">
                 View More Demonstrations
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -202,49 +207,40 @@ export default function LandingPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6">
-                <Satellite className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-3">
-                Build Autonomous Drones
-              </h3>
-              <p className="text-purple-100 text-sm">
-                Hands-on experience with drone assembly and programming
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6">
-                <Navigation className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-3">Navigation Systems</h3>
-              <p className="text-purple-100 text-sm">
-                Real-time navigation and control system development
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6">
-                <Settings className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-3">
-                AI in Electric Vehicles
-              </h3>
-              <p className="text-purple-100 text-sm">
-                Learn AI applications in modern electric vehicle systems
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6">
-                <GraduationCap className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-3">Industry Projects</h3>
-              <p className="text-purple-100 text-sm">
-                Participate in real-world, industry-relevant projects
-              </p>
-            </div>
+            {[Satellite, Navigation, Settings, GraduationCap].map((Icon, i) => (
+              <motion.div
+                key={i}
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+              >
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-3">
+                  {
+                    [
+                      "Build Autonomous Drones",
+                      "Navigation Systems",
+                      "AI in Electric Vehicles",
+                      "Industry Projects",
+                    ][i]
+                  }
+                </h3>
+                <p className="text-purple-100 text-sm">
+                  {
+                    [
+                      "Hands-on experience with drone assembly and programming",
+                      "Real-time navigation and control system development",
+                      "Learn AI applications in modern electric vehicle systems",
+                      "Participate in real-world, industry-relevant projects",
+                    ][i]
+                  }
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -261,45 +257,49 @@ export default function LandingPage() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-gradient-to-br from-purple-600 to-pink-600 border-0 text-white hover:scale-105 transition-transform">
-              <CardContent className="p-8 text-center">
-                <Rocket className="w-12 h-12 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-4">Partner with Us</h3>
-                <p className="mb-6 text-purple-100">
-                  Explore collaboration for research and product deployment
-                </p>
-                <Button variant="secondary" className="w-full">
-                  Get Started
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-teal-600 to-cyan-600 border-0 text-white hover:scale-105 transition-transform">
-              <CardContent className="p-8 text-center">
-                <GraduationCap className="w-12 h-12 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-4">Set Up an AI Lab</h3>
-                <p className="mb-6 text-teal-100">
-                  Bring industry-grade autonomous technology to your campus
-                </p>
-                <Button variant="secondary" className="w-full">
-                  Learn More
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-yellow-600 to-orange-600 border-0 text-white hover:scale-105 transition-transform">
-              <CardContent className="p-8 text-center">
-                <Phone className="w-12 h-12 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-                <p className="mb-6 text-yellow-100">
-                  Have questions or need more information? We&apos;re here to
-                  help!
-                </p>
-                <Button variant="secondary" className="w-full">
-                  Contact Now
-                </Button>
-              </CardContent>
-            </Card>
+            {[
+              {
+                icon: Rocket,
+                title: "Partner with Us",
+                text: "Explore collaboration for research and product deployment",
+                button: "Get Started",
+                gradient: "bg-gradient-to-br from-purple-600 to-pink-600",
+              },
+              {
+                icon: GraduationCap,
+                title: "Set Up an AI Lab",
+                text: "Bring industry-grade autonomous technology to your campus",
+                button: "Learn More",
+                gradient: "bg-gradient-to-br from-teal-600 to-cyan-600",
+              },
+              {
+                icon: Phone,
+                title: "Contact Us",
+                text: "Have questions or need more information? We're here to help!",
+                button: "Contact Now",
+                gradient: "bg-gradient-to-br from-yellow-600 to-orange-600",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40 }}
+                transition={{ duration: 0.1, delay: i * 0.01 }}
+                viewport={{ once: true }}
+              >
+                <Card className={`${item.gradient} border-0 text-white`}>
+                  <CardContent className="p-8 text-center">
+                    <item.icon className="w-12 h-12 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                    <p className="mb-6 text-purple-100">{item.text}</p>
+                    <Button variant="secondary" className="w-full">
+                      {item.button}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

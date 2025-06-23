@@ -6,8 +6,8 @@ const Footer = () => {
   return (
     <>
       <footer className="bg-white">
-        <div className="mx-auto w-full max-w-screen-xl">
-          <div className="grid grid-cols-1 gap-8 px-4 py-6 lg:py-8 md:grid-cols-3">
+        <div className="mx-auto w-full">
+          <div className="grid grid-cols-1 gap-8 px-28 py-6 lg:py-8 md:grid-cols-3">
             {/* Contact Info */}
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
@@ -113,7 +113,7 @@ const Footer = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="px-4 py-6 bg-gray-100 md:flex md:items-center md:justify-between">
+          <div className="px-28 py-6 bg-gray-100 md:flex md:items-center md:justify-between">
             <span className="text-sm text-gray-500 sm:text-center">
               © 2025 Voltaero Technologies. All Rights Reserved.
             </span>
