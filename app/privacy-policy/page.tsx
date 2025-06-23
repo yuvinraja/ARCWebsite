@@ -2,14 +2,14 @@ import { Metadata } from "next";
 import SectionHeading from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Voltaero Technologies",
+  title: "Privacy Policy",
   description:
     "Privacy Policy for Voltaero Technologies. Learn about how we collect, use and protect your personal data when you use our services.",
   keywords:
     "privacy policy, data protection, personal information, Voltaero Technologies",
   robots: "index, follow",
   openGraph: {
-    title: "Privacy Policy | Voltaero Technologies",
+    title: "Privacy Policy",
     description:
       "Privacy Policy for Voltaero Technologies. Learn about how we collect, use and protect your personal data.",
     type: "website",

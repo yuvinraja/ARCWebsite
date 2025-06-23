@@ -10,6 +10,39 @@ import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 
+import { groq } from "next-sanity";
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const query = groq`*[_type == "post" && slug.current == $slug][0]{
+    title,
+    description,
+    "ogImage": mainImage.asset->url
+  }`;
+
+  const post = await client.fetch(query, { slug: params.slug });
+
+  if (!post) {
+    return {
+      title: "Post not found",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.description || "Read this blog post on our website.",
+    openGraph: {
+      images: [
+        {
+          url: post.ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+  };
+}
+
 type Props = {
   params: Promise<{
     slug: string;

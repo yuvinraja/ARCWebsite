@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Voltaero Technologies | Drones, AI, Innovation",
+  title: "Voltaero Technologies",
   description:
     "Voltaero Technologies builds cutting-edge drones and products powered by AI and advanced tech.",
   keywords: ["drones", "AI", "technology", "Voltaero", "autonomous systems"],

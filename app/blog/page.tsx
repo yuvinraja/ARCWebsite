@@ -10,6 +10,20 @@ import { Calendar, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import SectionHeading from "@/components/SectionHeading";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Explore the latest insights and innovations in autonomous technologies and AI',
+  keywords: 'autonomous systems, AI, robotics, machine learning, blog, insights, innovations',
+  robots: 'index, follow',
+  openGraph: {
+    title: 'Blog',
+    description: 'Explore the latest insights and innovations in autonomous technologies and AI',
+    type: 'website',
+  },
+};
+
 export default async function BlogPage() {
   const posts: BlogPost[] = await client.fetch(allPostsQuery);
 
