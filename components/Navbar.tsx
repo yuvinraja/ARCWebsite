@@ -21,7 +21,7 @@ const navItems: NavItem[] = [
     children: [
       {
         label: "About Us",
-        link: "/#about",
+        link: "/about",
       },
       {
         label: "Our Team",
