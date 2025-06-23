@@ -12,14 +12,19 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 import { groq } from "next-sanity";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const query = groq`*[_type == "post" && slug.current == $slug][0]{
     title,
     description,
     "ogImage": mainImage.asset->url
   }`;
 
-  const post = await client.fetch(query, { slug: params.slug });
+  const { slug } = await params;
+  const post = await client.fetch(query, { slug });
 
   if (!post) {
     return {
