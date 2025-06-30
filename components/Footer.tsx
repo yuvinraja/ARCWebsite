@@ -108,6 +108,11 @@ const Footer = () => {
                     Contact
                   </Link>
                 </li>
+                <li className="mb-4">
+                  <Link href="/investors" className="hover:underline">
+                    Invest
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

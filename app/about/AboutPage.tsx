@@ -164,18 +164,18 @@ const AboutPage = () => {
                 Our Vision
               </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                To become a global leader in autonomous system integration and
-                AI education for real-world challenges in agriculture and
-                defense.
+                To be India's leading provider of autonomous technology and
+                hands-on learning experiences for educational institutions
+                nationwide.
               </p>
 
               <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
                 Our Mission
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
-                To innovate and deploy cutting-edge autonomous technologies
-                while nurturing AI skills among students and institutions across
-                the country.
+                Empowering the next generation of innovators by bridging the gap
+                in robotics and drone education across India's educational
+                institutions.
               </p>
             </div>
 

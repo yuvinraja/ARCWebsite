@@ -7,6 +7,7 @@ import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Logo from "./Logo"; // Assuming Logo component is in the same directory
+import { Button } from "@/components/ui/button";
 
 type NavItem = {
   label: string;
@@ -61,7 +62,7 @@ export default function Navbar() {
 
   return (
     <div className="relative z-[100] w-full bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg">
-      <div className="mx-auto flex justify-between px-5 py-5 text-base">
+      <div className="mx-auto flex justify-between px-4 py-4 text-base">
         <section ref={animationParent} className="flex items-center gap-10">
           <Logo />
           {isSideMenuOpen && (
@@ -74,13 +75,18 @@ export default function Navbar() {
           </div>
         </section>
 
-        {/* Login and register in desktop view */}
-        {/* <section className="hidden md:flex items-center gap-8">
-          <button className="h-fit text-purple-100 transition-all hover:text-white">Login</button>
+        {/* Right side buttons */}
+        <section className="hidden md:flex items-center gap-8">
+          <Link href="/investors">
+            <Button className="hidden md:flex items-center gap-8 bg-gradient-to-r from-yellow-400 to-pink-400 hover:from-yellow-500 hover:to-pink-500 text-black font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              Partner with Us
+            </Button>
+          </Link>
+          {/* <button className="h-fit text-purple-100 transition-all hover:text-white">Login</button>
           <button className="h-fit rounded-xl border-2 border-purple-200 bg-white/10 backdrop-blur-sm px-4 py-2 text-white transition-all hover:bg-white/20 hover:border-white">
             Register
-          </button>
-        </section> */}
+          </button> */}
+        </section>
 
         <FiMenu
           onClick={() => setSideMenue(true)}
@@ -147,12 +153,17 @@ function MobileNav({ closeSideMenu }: { closeSideMenu: () => void }) {
         </div>
 
         {/* Uncomment if you want to add login/register buttons in mobile view */}
-        {/* <section className="flex flex-col gap-8 mt-4 items-center">
-          <button className="h-fit text-purple-100 transition-all hover:text-white">Login</button>
+        <section className="flex flex-col gap-8 mt-4 items-center">
+          <Link href="/investors">
+            <Button className="items-center gap-8 bg-gradient-to-r from-yellow-400 to-pink-400 hover:from-yellow-500 hover:to-pink-500 text-black font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              Partner with Us
+            </Button>
+          </Link>
+          {/* <button className="h-fit text-purple-100 transition-all hover:text-white">Login</button>
           <button className="w-full max-w-[200px] rounded-xl border-2 border-purple-200 bg-white/10 backdrop-blur-sm px-4 py-2 text-white transition-all hover:bg-white/20 hover:border-white">
             Register
-          </button>
-        </section> */}
+          </button> */}
+        </section>
       </div>
     </div>
   );
